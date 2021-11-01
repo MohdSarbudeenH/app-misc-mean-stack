@@ -1,0 +1,45 @@
+<div class="content" role="main">
+
+    <!-- Resources -->
+    <h2>IWM</h2>
+
+    <div class="card-container">
+        <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
+            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+            </svg>
+
+            <span>DRE</span>
+
+            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+        </a>
+
+        <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
+            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+            </svg>
+
+            <span>Guidelines</span>
+
+            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+        </a>
+    </div>
+</div>
+
+<app-shared-rte-toggle [rteTitle]="title" [showToolbar]="showRTE" [editorContent]="dummyInp" (rteEditorBlur)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+
+<div class="ql-editor preview" [innerHTML]="dummyInp"></div>
+
+<br>
+<br>
+<br>
+<!-- <label> Without Toggle </label>
+<app-shared-rich-text-editor [editorContent]="dummyInp1" (rteEditorBlur)="onRteEditorBlur($event)">  </app-shared-rich-text-editor>
+
+<div class="ql-editor preview" [innerHTML]="dummyInp1"></div> -->
+
+

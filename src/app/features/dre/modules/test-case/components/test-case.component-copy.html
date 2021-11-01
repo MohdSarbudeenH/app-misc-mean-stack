@@ -1,0 +1,30 @@
+<app-shared-rte-toggle [rteTitle]="title1" [showRTE]="showRTE1" [editorContentExt]="dummyInp1" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+
+<div class="ql-editor preview" [innerHTML]="output1"></div>
+
+<br>
+<br>
+<br>
+
+<app-shared-rte-toggle [rteTitle]="title2" [showRTE]="showRTE2" [editorContentExt]="dummyInp2" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+
+<div class="ql-editor preview" [innerHTML]="output1"></div>
+
+<br>
+<br>
+<br>
+
+<!-- <label> Without Toggle </label> -->
+<app-shared-rich-text-editor [editorContent]="dummyInp1" (rteEditorBlur)="onRteEditorBlur($event)">  </app-shared-rich-text-editor>
+
+<div class="ql-editor preview" [innerHTML]="output1"></div>   
+
+<br>
+<br>
+<br>
+
+<app-shared-text-area [editorContent]="dummyInp1" (textEditorBlur)="onRteEditorBlur($event)" ></app-shared-text-area>
+
+<br>
+<br>
+<br>

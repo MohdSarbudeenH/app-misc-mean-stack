@@ -1,0 +1,107 @@
+<div class="panel">
+    <form class="form-group" [formGroup]="testCaseForm" novalidate>
+        <div class="form-row form-group">
+            <div class="col col-md-6">
+                <div class="form-row form-group">
+                    <div class="col col-md-3">
+                        <mat-form-field style="margin-top:12px;">
+                            <mat-label>Test By</mat-label>
+                            <input matInput formControlName="by"> 
+                        </mat-form-field>
+                    </div>
+                    <div class="col col-md-3">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col col-md-6">
+                        <mat-form-field style="width:100%">
+                            <mat-label>Test For</mat-label>
+                            <input matInput value="CRN 4000 - Inventory Enhancements" formControlName="for">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-6">
+                <app-shared-rte-toggle [rteTitle]="testCase.condition.label" [showRTE]="testCase.condition.showRTE" [editorContentExt]="testCase.condition.value" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+            </div>
+        </div>
+        <div class="form-row form-group">
+            <div class="col col-md-6">
+                <app-shared-rte-toggle [rteTitle]="testCase.expected.label" [showRTE]="testCase.expected.showRTE" [editorContentExt]="testCase.expected.value" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+            </div>
+            <div class="col col-md-6">
+                <app-shared-rte-toggle [rteTitle]="testCase.actual.label" [showRTE]="testCase.actual.showRTE" [editorContentExt]="testCase.actual.value" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+            </div>
+        </div>
+        <div class="form-row form-group" style="display: flex; justify-content: center; margin:30px;">
+            <mat-radio-group aria-label="testCaseResult">
+                <mat-radio-button value="p">Pass</mat-radio-button>
+                <mat-radio-button value="f">Fail</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="form-row form-group">
+            <mat-accordion class="col col-md-12">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title *ngIf="panelOpenState === true">Resolve Details</mat-panel-title>
+                        <mat-panel-title *ngIf="panelOpenState === false">Additional Details</mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="form-row form-group">
+                        <div class="col col-md-6">
+                            <app-shared-rte-toggle [rteTitle]="title1" [showRTE]="showRTE1" [editorContentExt]="dummyInp1" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+                        </div>
+                        <div class="col col-md-6">
+                            <app-shared-rte-toggle [rteTitle]="title2" [showRTE]="showRTE2" [editorContentExt]="dummyInp2" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+                        </div>
+                    </div>
+                    <div class="form-row form-group">
+                        <div class="col col-md-12">
+                            <div class="form-row form-group">
+                                <div class="col col-md-3" style="margin-top: 20px;">
+                                    <mat-form-field>
+                                        <mat-label>Defect Assigned To</mat-label>
+                                        <input matInput value="Mohammed Sarbudeen">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col col-md-3" style="margin-top: 5px;">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Fix Date</mat-label>
+                                        <input matInput [matDatepicker]="picker1">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col col-md-3" style="margin-top: 30px;">
+                                    <label>Fixed ? </label>
+                                    <mat-radio-group aria-label="fixTestCaseResult">
+                                        <mat-radio-button value="y">Yes</mat-radio-button>
+                                        <mat-radio-button value="n">No</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col col-md-3" style="margin-top: 20px;">
+                                    <mat-form-field style="width:100%">
+                                        <mat-label>Status</mat-label>
+                                        <input matInput value="Closed">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row form-group">
+                        <div class="col col-md-12">
+                            <app-shared-rte-toggle [rteTitle]="title1" [showRTE]="showRTE1" [editorContentExt]="dummyInp1" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between" *ngIf="rteHeaderTemplate">
+        <ng-container *ngTemplateOutlet="rteHeaderTemplate"></ng-container>
+        <!-- <ng-content select="[rteHeaderTemplate]"></ng-content> -->
+    </div>
+    <div class="card-body" style="padding:0rem;">
+        <quill-editor *ngIf="showToolbar"  [(ngModel)]="editorContent" [modules]="editorOptions" (onEditorCreated)="onEditorCreated($event)" (onBlur)="onEditorBlured($event)"></quill-editor>
+        <quill-editor *ngIf="!showToolbar" [(ngModel)]="editorContent" [modules]="editorOptionsWOToolbar" (onEditorCreated)="onEditorCreated($event)" (onBlur)="onEditorBlured($event)"></quill-editor>        
+
+        <!-- [appFocusMe]="!showToolbar" (onFocus)="onEditorFocused($event)" (ready)="onEditorCreated($event)"  [modules]= "{ toolbar: false }" " -->
+        <!-- <label>{{ editorContent }} </label> <div class="ql-editor preview" [innerHTML]="editorContent"></div> -->
+    </div>
+</div>

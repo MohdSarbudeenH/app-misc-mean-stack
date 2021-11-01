@@ -1,0 +1,30 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-hub',
+  templateUrl: './hub.component.html',
+  styleUrls: ['./hub.component.scss']
+})
+export class HubComponent implements OnInit {
+
+  public dummyInp: string;
+  public dummyInp1: string;
+  public title: string;
+  public title1: string;
+  public showRTE = true;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.dummyInp = 'This is with toggle';
+    this.title = 'Expected Case';
+    this.showRTE = true;
+    this.dummyInp1 = 'This is without toggle';
+    this.title1 = 'Actual Case';
+  }
+
+  public onRteEditorBlur(data: any): void {
+    this.dummyInp = data;
+  }
+
+}

@@ -1,0 +1,14 @@
+<ng-template #rteHeaderTemp>
+        <div>{{ rteTitle }}</div>
+        <form class="form-inline">
+                <div class="form-row">
+                        <div class="col"> RTE </div>
+                        <div class="col">
+                                <ui-switch [(ngModel)]="showRTE" size="small" name="rteToggle"></ui-switch>
+                        </div>
+                </div>
+        </form>
+</ng-template>
+
+<app-shared-rich-text-editor *ngIf="showRTE" [showToolbar]="true" [rteHeaderTemplate]="rteHeaderTemp" [editorContent]="editorContentExt" (rteEditorBlur)="onEditorBluredExt($event)"></app-shared-rich-text-editor>
+<app-shared-text-area *ngIf="!showRTE" [headerTemplate]="rteHeaderTemp" [editorContent]="editorContentExt" (textEditorBlur)="onEditorBluredExt($event)"></app-shared-text-area>
