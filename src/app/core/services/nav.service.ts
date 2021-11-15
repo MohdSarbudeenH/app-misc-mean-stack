@@ -1,18 +1,42 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Nav } from '../models/nav.model';
+import { ApiService } from './api.service';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NavService {
   private navs: Nav[];
   private nav: Nav;
+  private modules: Nav[];
   public navSource = new BehaviorSubject<Nav>({ feature: '', items: [] });
   public nav$ = this.navSource.asObservable();
 
-  constructor() { }
+  constructor(private apiService: ApiService) {
+  }
+
+  fetchModule(): void {
+    if (this.modules && this.modules.length > 0) {
+      return;
+    }
+
+    this.apiService.get('/module').subscribe(mods => {
+      if (mods && mods.length > 0) {
+        this.modules = [];
+        mods.forEach((mod) => {
+          if (mod.name) {
+            var nav: Nav = {
+              feature: mod.name,
+              items: mod.items
+            }
+            this.modules.push(nav);
+          }
+        });
+      }
+    }), err => {
+      console.log('Error fetching modules');
+    }
+  }
 
   setNav(navsVal: Nav): void {
     if (navsVal) {
@@ -47,65 +71,20 @@ export class NavService {
       }
     }
   }
-
+  
   selectNav(feature: string): Nav {
-    switch (feature) {
-      case 'hub':
-        const hubNav: Nav = {
-          feature: 'hub',
-          items: []
-        };
-        return hubNav;
-      case 'dre':
-        const dreNav: Nav = {
-          feature: 'dre',
-          items: [
-            {
-              id: 1,
-              name: 'Dashboard',
-              url: '/dre/dashboard',
-              img: ''
-            },
-            {
-              id: 2,
-              name: 'Release',
-              url: '/dre/release',
-              img: ''
-            },
-            {
-              id: 3,
-              name: 'PCR',
-              url: '/dre/pcr',
-              img: ''
-            },
-            {
-              id: 4,
-              name: 'Test Case',
-              url: '/dre/test-case',
-              img: ''
-            }
-          ]
-        };
-        return dreNav;
-      case 'guidelines':
-        const guidelinesNav: Nav = {
-          feature: 'guidelines',
-          items: [
-            {
-              id: 1,
-              name: 'Guidelines',
-              url: '/guidelines',
-              img: ''
-            }
-          ]
-        };
-        return guidelinesNav;
-      default:
+    if (feature) {
+      let navs: Nav[] = this.modules.filter(val => val.feature == feature);
+      if (navs && navs.length > 0) {
+        const nav: Nav = navs[0];
+        return nav;
+      } else {
         const defNav: Nav = {
           feature: '',
           items: []
         };
         return defNav;
+      }
     }
   }
 }

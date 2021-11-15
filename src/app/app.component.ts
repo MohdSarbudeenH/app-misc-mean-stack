@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavService } from '@core/services/nav.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app-misc';
+  constructor(private navService: NavService) {
+    this.navService.fetchModule();
+  }
 }

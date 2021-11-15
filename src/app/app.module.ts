@@ -11,6 +11,8 @@ import { FooterComponent } from '@core/components/footer/footer.component';
 import { HeaderComponent } from '@core/components/header/header.component';
 import { ContentWrapperComponent } from '@core/components/content-wrapper/content-wrapper.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApiService } from '@core/services/api.service';
+import { NavService } from '@core/services/nav.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ApiService, NavService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ }

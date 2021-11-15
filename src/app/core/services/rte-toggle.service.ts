@@ -14,7 +14,7 @@ export class RTEToggleService implements RTEToggle {
 
     getEditorContent(): string {
         if (this.showRTE) {
-            if ((!this.editorContentHTML || this.editorContentHTML.trim() === '') && this.editorContentText.trim() !== '') {
+            if ((!this.editorContentHTML || this.editorContentHTML.trim() === '') && (this.editorContentText && this.editorContentText.trim() !== '')) {
                 this.editorContentHTML = this.editorContentText;
             }
             this.editorContent = this.editorContentHTML;
