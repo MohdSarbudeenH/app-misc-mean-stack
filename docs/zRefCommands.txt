@@ -1,0 +1,14 @@
+
+--Verify installation status 
+ng --version
+
+-- To create component
+D:\Other_SourceCode\Projects\app-misc\src\app\core\components\layout> ng g component footer --skipTests
+
+--How to downgrade Angular CLI version?
+npm uninstall -g @angular/cli
+npm cache verify
+npm install -g @angular/cli@9.1.1
+
+--To change typescript version
+npm install typescript@3.8.3

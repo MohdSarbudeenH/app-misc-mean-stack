@@ -4,19 +4,24 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "ng build && node app.js",
+    "start": "ng build && node ./bin/www",
+    "devstart": "ng build && nodemon ./bin/www",
+    "ss": "SET DEBUG=app-misc-mean-stack:* & npm run devstart",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^3.2.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "debug": "~2.6.9",
     "express": "^4.17.1",
+    "http-errors": "~1.6.3",
     "mongoose": "^6.0.12"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.15"
   }
 }
