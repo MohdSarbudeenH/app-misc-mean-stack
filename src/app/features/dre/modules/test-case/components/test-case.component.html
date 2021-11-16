@@ -56,10 +56,10 @@
                     </mat-expansion-panel-header>
                     <div class="form-row form-group">
                         <div class="col col-md-6">
-                            <app-shared-rte-toggle [rteTitle]="title1" [showRTE]="showRTE1" [editorContentExt]="dummyInp1" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+                            <app-shared-rte-toggle [rteTitle]="testCase.affectedModule.label" [showRTE]="testCase.affectedModule.showRTE" [editorContentExt]="testCase.affectedModule.value" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
                         </div>
                         <div class="col col-md-6">
-                            <app-shared-rte-toggle [rteTitle]="title2" [showRTE]="showRTE2" [editorContentExt]="dummyInp2" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+                            <app-shared-rte-toggle [rteTitle]="testCase.fixDetail.label" [showRTE]="testCase.fixDetail.showRTE" [editorContentExt]="testCase.fixDetail.value" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
                         </div>
                     </div>
                     <div class="form-row form-group">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="form-row form-group">
                         <div class="col col-md-12">
-                            <app-shared-rte-toggle [rteTitle]="title1" [showRTE]="showRTE1" [editorContentExt]="dummyInp1" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
+                            <app-shared-rte-toggle [rteTitle]="testCase.comments.label" [showRTE]="testCase.comments.showRTE" [editorContentExt]="testCase.comments.value" (rteEditorBlurExt)="onRteEditorBlur($event)"></app-shared-rte-toggle>
                         </div>
                     </div>
                 </mat-expansion-panel>
