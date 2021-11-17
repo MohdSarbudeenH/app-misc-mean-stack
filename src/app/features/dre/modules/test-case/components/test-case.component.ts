@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NavService } from '@core/services/nav.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { TestCase } from '../test-case.model';
+import { TestCaseService } from '../services/test-case-service';
 
 @Component({
   selector: 'app-dre-test-case',
@@ -22,7 +23,7 @@ export class TestCaseComponent implements OnInit, AfterViewInit {
 
   public panelOpenState: boolean;
 
-  constructor(private navService: NavService) {
+  constructor(private navService: NavService, private testCaseService: TestCaseService) {
     navService.refreshLinks('dre');
   }
 
@@ -41,11 +42,19 @@ export class TestCaseComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-}
+    this.assignTestCaseValue();
+  }
 
   onRteEditorBlur(data: any): void {
     this.output1 = data;
-    console.log(data);
+    //console.log(data);
+    if (data && data.trim() != '') {
+      this.testCaseService.saveTestCase('CRN4102', 1, data).subscribe(status => {
+        if (status) {
+          console.log(status);
+        }
+      });
+    }
   }
 
   initTestCaseForm(): void {
@@ -66,6 +75,16 @@ export class TestCaseComponent implements OnInit, AfterViewInit {
     this.testCaseForm.addControl('fixDate', new FormControl(this.testCase.fixDate.value));
     this.testCaseForm.addControl('fixed', new FormControl(this.testCase.fixed.value));
     this.testCaseForm.addControl('comments', new FormControl(this.testCase.comments.value));
+  }
+
+  assignTestCaseValue(): void {
+    this.testCaseService.getTestCaseVal('CRN4102', 1).subscribe(data => {
+      if (data) {
+        if (data.testCaseValue) {
+          this.testCase.expected.value = data.testCaseValue.trim();
+        }
+      }
+    });
   }
 
 }

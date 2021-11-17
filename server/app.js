@@ -4,22 +4,24 @@ var path = require('path');
 var cors = require('cors');
 
 const db = require("./db")
-
-const moduleRouter = require("./routes/module");
 const indexRouter = require("./routes/index");
+const moduleRouter = require("./routes/module");
+const testCaseRouter = require("./routes/testCase");
 
 const app = express();
 app.use(cors({origin: '*'}));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({ extended: false, limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 //Put your angular dist folder here
 app.use(express.static(path.join(__dirname, '../dist/app-misc')));
 
 const directory = path.join(__dirname, './images');
 app.use("/images", express.static(directory));
+
 app.use('/', indexRouter);
 app.use("/api/module", moduleRouter);
+app.use("/api/testCase", testCaseRouter);
 
 app.get('/api/test', (req, res) => {
   res.send('NodeJs up and running..')
